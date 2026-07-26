@@ -47,11 +47,40 @@
 
         <div class="habit-card">
 
-            <h3>Coming soon 🚀</h3>
+            <div class="habit-grid">
 
-            <p>
-                Habit analytics will appear here.
-            </p>
+                <div class="habit-card">
+                    <h3>📋 Total Habits</h3>
+                    <div class="stats">
+                        <strong th:text="${totalHabits}">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="habit-card">
+                    <h3>✅ Active Habits</h3>
+                    <div class="stats">
+                        <strong th:text="${activeHabits}">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="habit-card">
+                    <h3>🔥 Completed Days</h3>
+                    <div class="stats">
+                        <strong th:text="${completedDays}">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="habit-card">
+                    <h3>🏆 Best Streak</h3>
+                    <div class="stats">
+                        <strong th:text="${bestStreak}">0</strong>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
 

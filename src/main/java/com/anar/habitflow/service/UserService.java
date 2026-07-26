@@ -18,6 +18,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+
     public void register(RegisterRequest request) {
 
         if (userRepository.existsByUsername(request.getUsername())) {
@@ -36,4 +37,13 @@ public class UserService {
 
         userRepository.save(user);
     }
+
+
+    public User findByUsername(String username) {
+
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+    }
+
 }

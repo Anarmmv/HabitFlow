@@ -218,4 +218,38 @@ public class HabitService {
 
         return best;
     }
+    public int countHabits(User user) {
+        return habitRepository.findByUser(user).size();
+    }
+
+
+    public int countActiveHabits(User user) {
+        return (int) habitRepository.findByUser(user)
+                .stream()
+                .filter(Habit::isActive)
+                .count();
+    }
+
+
+    public int countCompletedDays(User user) {
+
+        return habitRepository.findByUser(user)
+                .stream()
+                .mapToInt(habit ->
+                        habitCompletionRepository
+                                .findByHabitOrderByCompletedDateAsc(habit)
+                                .size()
+                )
+                .sum();
+    }
+
+
+    public int calculateBestOverallStreak(User user) {
+
+        return habitRepository.findByUser(user)
+                .stream()
+                .mapToInt(this::calculateBestStreak)
+                .max()
+                .orElse(0);
+    }
 }
