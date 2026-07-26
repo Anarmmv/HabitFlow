@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Profile - HabitFlow</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+
+<body>
+
+<div class="dashboard">
+
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <span class="dot"></span>
+            HabitFlow
+        </div>
+
+
+        <div class="menu">
+
+            <a th:href="@{/habits}">
+                🏠 Dashboard
+            </a>
+
+            <a th:href="@{/habits}">
+                📋 Habits
+            </a>
+
+            <a th:href="@{/statistics}">
+                📊 Statistics
+            </a>
+
+            <a class="active">
+                👤 Profile
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+    <main class="content">
+
+        <h1>👤 Profile</h1>
+
+
+        <div class="habit-card">
+
+            <h3>
+                Username
+            </h3>
+
+            <p th:text="${username}">
+                user
+            </p>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+</body>
+</html>

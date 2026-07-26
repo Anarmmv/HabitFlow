@@ -1,3 +1,4 @@
+
 *{
     box-sizing:border-box;
 }
@@ -259,4 +260,33 @@ label{
 .delete-btn{
     background:#fee2e2;
     color:#b91c1c;
+}
+.empty-card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    text-align:center;
+}
+
+
+.habit-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+
+.paused{
+    background:#e2e8f0;
+    color:#475569;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+
+.description{
+    color:#64748b;
+    margin-top:15px;
 }
