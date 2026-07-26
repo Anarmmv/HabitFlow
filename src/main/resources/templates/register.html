@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HabitFlow - Register</title>
+</head>
+<body>
+
+<h1>Create Account</h1>
+
+<form th:action="@{/auth/register}" th:object="${registerRequest}" method="post">
+
+    <label>Username</label><br>
+    <input type="text" th:field="*{username}">
+    <br><br>
+
+    <label>Email</label><br>
+    <input type="email" th:field="*{email}">
+    <br><br>
+
+    <label>Password</label><br>
+    <input type="password" th:field="*{password}">
+    <br><br>
+
+    <button type="submit">Create Account</button>
+
+</form>
+
+</body>
+</html>
