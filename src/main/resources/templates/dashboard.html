@@ -3,37 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>HabitFlow Dashboard</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 
 <nav class="navbar navbar-dark bg-primary">
-    <div class="container">
+    <div class="container d-flex justify-content-between">
         <span class="navbar-brand mb-0 h1">HabitFlow</span>
+        <form th:action="@{/logout}" method="post" class="mb-0">
+            <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+        </form>
     </div>
 </nav>
 
 <div class="container mt-5">
 
-    <div class="card shadow p-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">👋 Your Habits</h2>
+        <a th:href="@{/habits/new}" class="btn btn-success">+ Add Habit</a>
+    </div>
 
-        <h2>👋 Welcome to HabitFlow</h2>
+    <div th:if="${#lists.isEmpty(habits)}" class="card shadow p-4 text-center">
+        <p class="text-muted mb-0">You have no habits yet. Add your first one!</p>
+    </div>
 
-        <p class="text-muted">
-            Congratulations! Your dashboard is working.
-        </p>
+    <div class="row g-3">
+        <div class="col-md-6 col-lg-4" th:each="item : ${habits}">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
 
-        <hr>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h5 class="card-title" th:text="${item.habit.title}">Habit title</h5>
+                        <span th:if="${!item.habit.active}" class="badge bg-secondary">Paused</span>
+                    </div>
 
-        <h4>🔥 Current Streak</h4>
+                    <p class="card-text text-muted" th:text="${item.habit.description}">Description</p>
 
-        <h1>0 Days</h1>
+                    <div class="d-flex gap-3 mb-3">
+                        <div>
+                            <div class="fs-4">🔥 <span th:text="${item.currentStreak}">0</span></div>
+                            <small class="text-muted">Current streak</small>
+                        </div>
+                        <div>
+                            <div class="fs-4">🏆 <span th:text="${item.bestStreak}">0</span></div>
+                            <small class="text-muted">Best streak</small>
+                        </div>
+                    </div>
 
-        <button class="btn btn-success mt-3">
-            + Add Habit
-        </button>
+                    <form th:action="@{/habits/{id}/complete(id=${item.habit.id})}" method="post" class="d-inline">
+                        <button type="submit"
+                                class="btn btn-sm"
+                                th:classappend="${item.completedToday} ? 'btn-secondary' : 'btn-primary'"
+                                th:disabled="${item.completedToday}"
+                                th:text="${item.completedToday} ? '✓ Done today' : 'Mark as done today'">
+                        </button>
+                    </form>
 
+                    <form th:action="@{/habits/{id}/toggle(id=${item.habit.id})}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary"
+                                th:text="${item.habit.active} ? 'Pause' : 'Resume'">Pause</button>
+                    </form>
+
+                    <form th:action="@{/habits/{id}/delete(id=${item.habit.id})}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-outline-danger"
+                                onclick="return confirm('Delete this habit?')">Delete</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
