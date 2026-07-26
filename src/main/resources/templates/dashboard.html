@@ -68,12 +68,27 @@
 
             <div>
                 <h1>
-                    👋 Your Habits
+                    <h1>
+                        👋 Welcome, <span th:text="${#authentication.name}"></span>
+                    </h1>
+
+                    <p>Build consistency every day.</p>
                 </h1>
 
                 <p>
                     Build consistency every day.
                 </p>
+
+            </div>
+            <div class="stats-grid">
+
+                ...
+
+            </div>
+
+            <div th:if="${#lists.isEmpty(habits)}" class="empty-card">
+
+                ...
 
             </div>
 
@@ -128,7 +143,17 @@
                    th:text="${item.habit.description}">
                     Description
                 </p>
+                <div class="status">
 
+    <span th:if="${item.habit.active}" class="active-status">
+        🟢 Active
+    </span>
+
+                    <span th:unless="${item.habit.active}" class="paused">
+        🟡 Paused
+    </span>
+
+                </div>
 
 
 
@@ -182,8 +207,7 @@
 
                         <button class="complete-btn"
                                 th:disabled="${item.completedToday}"
-                                th:text="${item.completedToday} ? '✓ Done today' : 'Complete'">
-
+                                th:text="${item.completedToday} ? '✔ Completed Today' : '✅ Complete'">
                         </button>
 
                     </form>
@@ -193,8 +217,7 @@
                     <form th:action="@{/habits/{id}/toggle(id=${item.habit.id})}" method="post">
 
                         <button class="secondary-btn"
-                                th:text="${item.habit.active} ? 'Pause' : 'Resume'">
-
+                                th:text="${item.habit.active} ? '⏸ Pause' : '▶ Resume'">
                         </button>
 
                     </form>
@@ -205,9 +228,7 @@
 
                         <button class="delete-btn"
                                 onclick="return confirm('Delete this habit?')">
-
-                            Delete
-
+                            🗑 Delete
                         </button>
 
                     </form>

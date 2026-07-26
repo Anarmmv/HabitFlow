@@ -39,6 +39,17 @@ public class HabitController {
                         habitService.isCompletedToday(habit)
                 ))
                 .collect(Collectors.toList());
+        model.addAttribute("habitCount",
+                habitService.countHabits(currentUser));
+
+        model.addAttribute("completedDays",
+                habitService.countCompletedDays(currentUser));
+
+        model.addAttribute("bestOverallStreak",
+                habitService.calculateBestOverallStreak(currentUser));
+
+        model.addAttribute("activeHabits",
+                habitService.countActiveHabits(currentUser));
 
         model.addAttribute("habits", habitViews);
         return "dashboard";
