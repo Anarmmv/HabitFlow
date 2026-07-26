@@ -1,51 +1,97 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>New Habit - HabitFlow</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
-<body class="bg-light">
 
-<nav class="navbar navbar-dark bg-primary">
-    <div class="container">
-        <span class="navbar-brand mb-0 h1">HabitFlow</span>
-    </div>
-</nav>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+<body>
 
-            <div class="card shadow p-4">
-                <h3 class="mb-4">Add a new habit</h3>
 
-                <form th:action="@{/habits/new}" method="post">
+<div class="auth-page">
 
-                    <div class="mb-3">
-                        <label class="form-label">Title</label>
-                        <input type="text" name="title" class="form-control"
-                               placeholder="e.g. Drink water" required>
-                    </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Description (optional)</label>
-                        <textarea name="description" class="form-control"
-                                  placeholder="e.g. 8 glasses a day"></textarea>
-                    </div>
+    <div class="auth-card">
 
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-success">Save</button>
-                        <a th:href="@{/habits}" class="btn btn-outline-secondary">Cancel</a>
-                    </div>
 
-                </form>
+        <div class="brand">
+            <span class="dot"></span>
+            HabitFlow
+        </div>
+
+
+        <p class="auth-subtitle">
+            Create a new habit and start your journey.
+        </p>
+
+
+
+        <form th:action="@{/habits/new}" method="post">
+
+
+            <div class="form-group">
+
+                <label>Habit title</label>
+
+                <input
+                        type="text"
+                        name="title"
+                        class="form-control"
+                        placeholder="Example: Drink water"
+                        required>
 
             </div>
 
+
+
+            <div class="form-group">
+
+                <label>Description</label>
+
+                <textarea
+                        name="description"
+                        class="form-control"
+                        rows="4"
+                        placeholder="Example: Drink 8 glasses of water every day">
+                </textarea>
+
+            </div>
+
+
+
+
+            <button type="submit" class="btn-primary">
+                Save Habit →
+            </button>
+
+
+        </form>
+
+
+
+
+        <div class="auth-footer">
+
+            <a th:href="@{/habits}">
+                ← Back to habits
+            </a>
+
         </div>
+
+
+
     </div>
+
+
 </div>
+
 
 </body>
 </html>
