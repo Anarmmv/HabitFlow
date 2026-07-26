@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title>Login - HabitFlow</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
 
-<h1>Login page</h1>
+<body class="bg-light">
 
-<p>Buranı növbəti addımda hazırlayacağıq.</p>
+<div class="container">
+
+    <div class="row justify-content-center mt-5">
+
+        <div class="col-md-4">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h2 class="text-center mb-4">HabitFlow</h2>
+                    <form action="/login" method="post"></form>
+
+                    <div class="text-center mt-3">
+
+                        <a th:href="@{/auth/register}">
+                            Register
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
