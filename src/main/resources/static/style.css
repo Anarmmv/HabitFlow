@@ -346,4 +346,80 @@ label{
 h1{
     font-family:'Space Grotesk',sans-serif;
 }
+/* QUOTE BANNER */
+.quote-banner{
+    background:#f1f5f9;
+    border:1px solid #e2e8f0;
+    border-radius:16px;
+    padding:16px 20px;
+    margin:20px 0;
+    font-style:italic;
+    color:#475569;
+    transition:.25s;
+}
+
+/* THEME TOGGLE */
+.theme-toggle{
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#1e293b;
+    color:white;
+    cursor:pointer;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    justify-content:center;
+    transition:.2s;
+}
+
+.theme-toggle:hover{
+    background:#334155;
+}
+
+/* DARK MODE */
+body.dark-mode{
+    background:#0b1220;
+    color:#e2e8f0;
+}
+
+body.dark-mode .sidebar{
+    background:#020617;
+}
+
+body.dark-mode .habit-card,
+body.dark-mode .empty-card{
+    background:#1e293b;
+    border-color:#334155;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+    color:#e2e8f0;
+}
+
+body.dark-mode .description{
+    color:#94a3b8;
+}
+
+body.dark-mode .secondary-btn{
+    background:#334155;
+    color:#e2e8f0;
+}
+
+body.dark-mode .quote-banner{
+    background:#1e293b;
+    border-color:#334155;
+    color:#cbd5e1;
+}
+
+body.dark-mode .stat-card{
+    background:#1e293b;
+    border-color:#334155;
+    color:#e2e8f0;
+}
+
+body.dark-mode .paused{
+    background:#78350f;
+    color:#fde68a;
+}
 

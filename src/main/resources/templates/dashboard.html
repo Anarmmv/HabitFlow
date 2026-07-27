@@ -11,12 +11,9 @@
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
-
 <body>
 
-
 <div class="dashboard">
-
 
     <aside class="sidebar">
 
@@ -25,228 +22,136 @@
             HabitFlow
         </div>
 
-
         <div class="menu">
-
-            <a class="active" th:href="@{/habits}">
-                🏠 Dashboard
-            </a>
-
-            <a th:href="@{/habits}">
-                📋 Habits
-            </a>
-
-            <a th:href="@{/statistics}">
-                📊 Statistics
-            </a>
-
-            <a th:href="@{/profile}">
-                👤 Profile
-            </a>
-
+            <a class="active" th:href="@{/habits}">🏠 Dashboard</a>
+            <a th:href="@{/habits}">📋 Habits</a>
+            <a th:href="@{/statistics}">📊 Statistics</a>
+            <a th:href="@{/profile}">👤 Profile</a>
         </div>
 
+        <button id="themeToggle" class="theme-toggle" type="button">
+            🌙 Dark Mode
+        </button>
 
         <form th:action="@{/logout}" method="post">
-
-            <button class="logout-btn">
-                Logout
-            </button>
-
+            <button class="logout-btn">Logout</button>
         </form>
-
 
     </aside>
 
-
-
-
     <main class="content">
 
-
         <div class="top-section">
-
             <div>
                 <h1>
-                    <h1>
-                        👋 Welcome, <span th:text="${#authentication.name}"></span>
-                    </h1>
-
+                    <h1>👋 Welcome, <span th:text="${#authentication.name}"></span></h1>
                     <p>Build consistency every day.</p>
                 </h1>
-
-              
-
             </div>
-            <div class="stats-grid">
-
-                ...
-
-            </div>
-
-            <div th:if="${#lists.isEmpty(habits)}" class="empty-card">
-
-                ...
-
-            </div>
-
-
-            <a th:href="@{/habits/new}" class="add-btn">
-                + Add Habit
-            </a>
-
-
+            <a th:href="@{/habits/new}" class="add-btn">+ Add Habit</a>
         </div>
 
-
-
-
+        <div id="quoteBanner" class="quote-banner"></div>
 
         <div th:if="${#lists.isEmpty(habits)}" class="empty-card">
-
             <h3>No habits yet 🚀</h3>
-
-            <p>
-                Start your journey by creating your first habit.
-            </p>
-
+            <p>Start your journey by creating your first habit.</p>
         </div>
 
-
-
-
-
         <div class="habit-grid">
-
-
             <div class="habit-card" th:each="item : ${habits}">
-
-
                 <div class="habit-header">
-
-                    <h3 th:text="${item.habit.title}">
-                        Habit title
-                    </h3>
-
-
-                    <span th:if="${!item.habit.active}" class="paused">
-                        Paused
-                    </span>
-
+                    <h3 th:text="${item.habit.title}">Habit title</h3>
+                    <span th:if="${!item.habit.active}" class="paused">Paused</span>
                 </div>
 
-
-
-                <p class="description"
-                   th:text="${item.habit.description}">
-                    Description
-                </p>
+                <p class="description" th:text="${item.habit.description}">Description</p>
                 <div class="status">
-
-    <span th:if="${item.habit.active}" class="active-status">
-        🟢 Active
-    </span>
-
-                    <span th:unless="${item.habit.active}" class="paused">
-        🟡 Paused
-    </span>
-
+                    <span th:if="${item.habit.active}" class="active-status">🟢 Active</span>
+                    <span th:unless="${item.habit.active}" class="paused">🟡 Paused</span>
                 </div>
-
-
-
 
                 <div class="stats">
-
-
                     <div>
-
-                        <strong>
-                            🔥
-                            <span th:text="${item.currentStreak}">
-                                0
-                            </span>
-                        </strong>
-
-                        <small>
-                            Current streak
-                        </small>
-
+                        <strong>🔥 <span th:text="${item.currentStreak}">0</span></strong>
+                        <small>Current streak</small>
                     </div>
-
-
-
                     <div>
-
-                        <strong>
-                            🏆
-                            <span th:text="${item.bestStreak}">
-                                0
-                            </span>
-                        </strong>
-
-                        <small>
-                            Best streak
-                        </small>
-
+                        <strong>🏆 <span th:text="${item.bestStreak}">0</span></strong>
+                        <small>Best streak</small>
                     </div>
-
-
                 </div>
 
-
-
-
-
                 <div class="actions">
-
-
                     <form th:action="@{/habits/{id}/complete(id=${item.habit.id})}" method="post">
-
                         <button class="complete-btn"
                                 th:disabled="${item.completedToday}"
                                 th:text="${item.completedToday} ? '✔ Completed Today' : '✅ Complete'">
                         </button>
-
                     </form>
 
-
-
                     <form th:action="@{/habits/{id}/toggle(id=${item.habit.id})}" method="post">
-
                         <button class="secondary-btn"
                                 th:text="${item.habit.active} ? '⏸ Pause' : '▶ Resume'">
                         </button>
-
                     </form>
-
-
 
                     <form th:action="@{/habits/{id}/delete(id=${item.habit.id})}" method="post">
-
-                        <button class="delete-btn"
-                                onclick="return confirm('Delete this habit?')">
-                            🗑 Delete
-                        </button>
-
+                        <button class="delete-btn" onclick="return confirm('Delete this habit?')">🗑 Delete</button>
                     </form>
-
-
                 </div>
-
-
-
             </div>
-
-
         </div>
-
 
     </main>
 
-
 </div>
 
+<script>
+    var quotes = [
+        "Small steps every day lead to big changes.",
+        "Discipline is choosing between what you want now and what you want most.",
+        "You don't have to be great to start, but you have to start to be great.",
+        "Consistency is what transforms average into excellence.",
+        "Success is the sum of small efforts, repeated day in and day out.",
+        "The secret of your future is hidden in your daily routine.",
+        "Motivation gets you started. Habit keeps you going.",
+        "Every habit you build is a vote for the person you want to become.",
+        "Don't break the chain.",
+        "Progress, not perfection."
+    ];
+
+    var dayOfYear = Math.floor(
+        (new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000
+    );
+
+    var quoteEl = document.getElementById("quoteBanner");
+    if (quoteEl) {
+        quoteEl.textContent = "💡 " + quotes[dayOfYear % quotes.length];
+    }
+
+    var themeToggle = document.getElementById("themeToggle");
+
+    function applyTheme(theme) {
+        if (theme === "dark") {
+            document.body.classList.add("dark-mode");
+            themeToggle.textContent = "☀️ Light Mode";
+        } else {
+            document.body.classList.remove("dark-mode");
+            themeToggle.textContent = "🌙 Dark Mode";
+        }
+    }
+
+    var savedTheme = localStorage.getItem("habitflow-theme") || "light";
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener("click", function () {
+        var isDark = document.body.classList.contains("dark-mode");
+        var newTheme = isDark ? "light" : "dark";
+        localStorage.setItem("habitflow-theme", newTheme);
+        applyTheme(newTheme);
+    });
+</script>
 
 </body>
 </html>
