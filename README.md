@@ -1,22 +1,21 @@
-# HabitFlow 🌱
+# HabitFlow
 
-HabitFlow is a web application for tracking and managing daily habits.
+HabitFlow is a web application for creating and managing daily habits.
 
-This project was built with Java and Spring Boot to practice backend development, authentication, database integration, and MVC architecture.
+The project is built with Java and Spring Boot and includes user authentication, habit management, statistics, and database integration.
 
-## ✨ Features
+## Features
 
-- 👤 User registration and login
-- 🔐 User authentication with Spring Security
-- ➕ Create new habits
-- ✏️ Manage existing habits
-- ⏸️ Activate and pause habits
-- 📊 View habit statistics
-- 👤 User profile
-- 💾 Persistent data storage with H2 Database
-- 🎨 Server-side rendered web interface with Thymeleaf
+- User registration and login
+- User authentication with Spring Security
+- Create and manage habits
+- Activate and pause habits
+- Track habit completion
+- View habit statistics
+- User profile
+- H2 database integration
 
-## 🛠️ Technologies
+## Technologies
 
 ### Backend
 
@@ -36,68 +35,56 @@ This project was built with Java and Spring Boot to practice backend development
 - HTML
 - CSS
 
-### Build & Tools
+### Tools
 
 - Maven
 - Git
 - GitHub
 - IntelliJ IDEA
 
-## 🏗️ Project Architecture
+## Project Structure
 
-The project follows a layered Spring Boot MVC architecture.
+The project follows a layered Spring Boot MVC structure.
 
-The application separates responsibilities between different layers to keep the code organized and maintainable.
+- `controller` - handles HTTP requests
+- `service` - contains application logic
+- `repository` - handles database operations
+- `entity` - contains JPA entities
+- `config` - contains application and security configuration
 
-- Controller
-- Service
-- Repository
-- Entity
-- Configuration
+## Authentication
 
-## 🔐 Authentication
+Spring Security is used for user authentication and access control.
 
-Spring Security is used to handle user authentication and protect application pages.
+Users can register, log in, and access their personal pages after authentication.
 
-Users can:
+## Habit Management
 
-1. Register an account
-2. Log in using their credentials
-3. Access their personal dashboard
-4. Manage their habits
+After logging in, users can create and manage their habits.
 
-Protected pages require the user to be authenticated.
+The application allows users to:
 
-## 📊 Habit Management
+- Create habits
+- Activate habits
+- Pause habits
+- Track habit completion
+- View statistics
 
-After logging in, users can manage their personal habits through the dashboard.
+## Database
 
-A habit can be:
+HabitFlow uses H2 as the database.
 
-- Created
-- Managed
-- Activated
-- Paused
+Spring Data JPA and Hibernate are used to work with the database.
 
-The application also provides a statistics page where users can view information about their habits.
+Main entities:
 
-## 💾 Database
+- `User`
+- `Habit`
+- `HabitCompletion`
 
-HabitFlow uses H2 Database for data storage.
-
-Spring Data JPA and Hibernate are used for communication between the Java application and the database.
-
-Main entities include:
-
-- User
-- Habit
-- HabitCompletion
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-
-Make sure you have the following installed:
 
 - Java 26
 - Git
@@ -117,51 +104,45 @@ On Windows:
 
     mvnw.cmd spring-boot:run
 
-The application will start on:
+The application runs on:
 
     http://localhost:8080
 
-## H2 Database Console
+## H2 Console
 
-The project includes an H2 database console for development and testing.
-
-After starting the application, the console can be accessed at:
+The H2 database console is available at:
 
     http://localhost:8080/h2-console
 
-Use the database configuration defined in:
+Database configuration can be found in:
 
     src/main/resources/application.properties
 
-## 🎯 Project Goals
+## What I Practiced
 
-The main purpose of HabitFlow was to practice building a complete Java Spring Boot web application and understand how different backend technologies work together.
+While working on HabitFlow, I practiced:
 
-Through this project, I practiced:
-
-- Building Spring Boot applications
+- Building applications with Spring Boot
+- Creating REST and MVC components
 - Working with Spring Security
 - Creating JPA entities and repositories
-- Connecting an application to a database
-- Managing user authentication
-- Following MVC architecture
-- Building server-side rendered pages with Thymeleaf
-- Using Git and GitHub for version control
+- Connecting Java applications to a database
+- Implementing user authentication
+- Using Thymeleaf
+- Working with Git and GitHub
 
-## 🔮 Future Improvements
+## Future Improvements
 
-Possible future improvements include:
-
-- REST API endpoints
-- PostgreSQL database integration
-- Habit reminders and notifications
+- REST API
+- PostgreSQL integration
+- Habit reminders
 - Habit streak tracking
 - More detailed statistics
-- REST API documentation with Swagger/OpenAPI
+- Swagger/OpenAPI documentation
 - Automated tests
 - Docker support
 
-## 👤 Author
+## Author
 
 Anar Məmmədov
 
